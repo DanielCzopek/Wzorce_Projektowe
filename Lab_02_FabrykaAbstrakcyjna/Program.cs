@@ -34,7 +34,7 @@ class AlphabetFactory
 
 abstract class SystemFactory
 {
-    //
+    public abstract ILetters CreateAlfa();
     public abstract INums CreateNum();
 }
 
@@ -67,9 +67,10 @@ class GrekaNumbers : INums
 {
     string numbers;
 
-    //
-    //
-    //  
+    public GrekaNumbers()
+    {
+        numbers = "αʹ βʹ γʹ";
+    }
 
     public string ShowNum()
     {
