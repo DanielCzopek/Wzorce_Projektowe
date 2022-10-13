@@ -48,34 +48,66 @@ class CyrylicaFactory : SystemFactory
 {
     public override ILetters CreateAlfa()
     {
-        return new CyrylicaLetters();
+        return new CyrlicaLetters();
     }
 
     public override INums CreateNum()
     {
-        return new CyrylicaNumbers();
+        return new CyrlicaNumbers();
+    }
+}
+
+class LacinkaFactory : SystemFactory
+{
+    public override ILetters CreateAlfa()
+    {
+        return new LacinkaLetters();
+    }
+
+    public override INums CreateNum()
+    {
+        return new LacinkaNumbers();
+    }
+}
+
+class GreakFactory : SystemFactory
+{
+    public override ILetters CreateAlfa()
+    {
+        return new GrekaLetters();
+    }
+
+    public override INums CreateNum()
+    {
+        return new GrekaNumbers();
     }
 }
 
 
-//
-// ...
-//
 
 
-class GrekaNumbers : INums
+class CyrlicaNumbers : INums
 {
     string numbers;
 
-    public GrekaNumbers()
+    public CyrlicaNumbers()
     {
-        numbers = "αʹ βʹ γʹ";
+        numbers = "1 2 3";
     }
 
     public string ShowNum()
     {
         return numbers;
     }
+}
+
+class CyrlicaLetters : ILetters
+{
+
+}
+
+class LacinkaNumbers : INums
+{
 }
 
 
@@ -91,6 +123,25 @@ class LacinkaLetters : ILetters
     //
     //
     //
+}
+class GrekaNumbers : INums
+{
+    string numbers;
+
+    public GrekaNumbers()
+    {
+        numbers = "αʹ βʹ γʹ";
+    }
+
+    public string ShowNum()
+    {
+        return numbers;
+    }
+}
+
+class GrekaLetters : ILetters
+{
+
 }
 
 
