@@ -2,7 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-public interface INums
+interface INums
 {
     public string ShowNums();
 }
@@ -83,8 +83,7 @@ class GreakFactory : SystemFactory
     }
 }
 
-
-
+// Cyrlica
 
 class CyrlicaNumbers : INums
 {
@@ -95,35 +94,61 @@ class CyrlicaNumbers : INums
         numbers = "1 2 3";
     }
 
-    public string ShowNum()
+    public string ShowNums()
     {
         return numbers;
     }
+
 }
 
 class CyrlicaLetters : ILetters
 {
+    string letters;
+    public CyrlicaLetters()
+    {
+        letters = "абвгд";
+    }
+    public string ShowAlfa()
+    {
+    return letters;
+    }
 
 }
+
+// Alfabet łaciński
 
 class LacinkaNumbers : INums
 {
-}
+    string numbers;
 
+    public LacinkaNumbers()
+    {
+        numbers = "I II III";
+    }
+
+    public string ShowNums()
+    {
+        return numbers;
+    }
+
+}
 
 class LacinkaLetters : ILetters
 {
     string letters;
-
     public LacinkaLetters()
     {
         letters = "abcde";
     }
+    public string ShowAlfa()
+    {
+        return letters;
+    }
 
-    //
-    //
-    //
 }
+
+// Alfabet Grecki
+
 class GrekaNumbers : INums
 {
     string numbers;
@@ -133,22 +158,30 @@ class GrekaNumbers : INums
         numbers = "αʹ βʹ γʹ";
     }
 
-    public string ShowNum()
+    public string ShowNums()
     {
         return numbers;
     }
+
 }
 
 class GrekaLetters : ILetters
 {
+    string letters;
+    public GrekaLetters()
+    {
+        letters = "αβγδε";
+    }
+    public string ShowAlfa()
+    {
+        return letters;
+    }
 
 }
-
 
 //
 // ...
 //
-
 
 public class Application
 {
@@ -162,10 +195,7 @@ public class Application
 
         //
         alphabet_cyrylica.Generate();
-        //
-
-        //
-        //
+        
         Console.WriteLine(alfabet_greka.letters.ShowAlfa() + " " + alfabet_greka.numbers.ShowNum());
     }
 }
