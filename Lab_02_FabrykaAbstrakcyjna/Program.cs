@@ -70,7 +70,7 @@ class LacinkaFactory : SystemFactory
     }
 }
 
-class GreakFactory : SystemFactory
+class GrekaFactory : SystemFactory
 {
     public override ILetters CreateAlfa()
     {
@@ -189,13 +189,16 @@ public class Application
     {
         Console.OutputEncoding = Encoding.UTF8;
 
-        AlphabetFactory alphabet_lacinka = new AlphabetFactory(new LacinkaFactory());
-        //
-        //
+        AlphabetFactory alfabet_lacinka = new AlphabetFactory(new LacinkaFactory());
+        AlphabetFactory alfabet_cyrlica = new AlphabetFactory(new CyrylicaFactory());
+        AlphabetFactory alfabet_greka = new AlphabetFactory(new GrekaFactory());
 
-        //
-        alphabet_cyrylica.Generate();
+        alfabet_lacinka.Generate();
+        alfabet_cyrlica.Generate();
+        alfabet_greka.Generate();
         
-        Console.WriteLine(alfabet_greka.letters.ShowAlfa() + " " + alfabet_greka.numbers.ShowNum());
+        Console.WriteLine(alfabet_lacinka.letters.ShowAlfa() + " " + alfabet_lacinka.numbers.ShowNums());
+        Console.WriteLine(alfabet_cyrlica.letters.ShowAlfa() + " " + alfabet_cyrlica.numbers.ShowNums());
+        Console.WriteLine(alfabet_greka.letters.ShowAlfa() + " " + alfabet_greka.numbers.ShowNums());
     }
 }
