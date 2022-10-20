@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
+using System.Linq;
 
 namespace WzorzecAdapter
 {
@@ -19,11 +21,13 @@ namespace WzorzecAdapter
         }
     }
 
-    //
-    // tu trzeba dopisać klasę zwracającą zawartość pliku csv w postaci stringa
-    // (jednego długiego, rozdzielanego znakami nowego wiersza)
-    //
-
+    public class CsvReader
+    {
+        public string ReadCsvFile(string path)
+        {
+            return File.ReadAllText(path);
+        }
+    }
 
     public interface IUserRepository
     {
@@ -32,16 +36,16 @@ namespace WzorzecAdapter
 
     public class UsersApiAdapter : IUserRepository
     {
-        private UsersApi _adaptee = null;
+        private UsersApi _adapter = null;
 
-        public UsersApiAdapter(UsersApi adaptee)
+        public UsersApiAdapter(UsersApi adapter)
         {
-            _adaptee = adaptee;
+            _adapter = adapter;
         }
 
         public List<List<string>> GetUserNames()
         {
-            string incompatibleApiResponse = this._adaptee
+            string incompatibleApiResponse = this._adapter
               .GetUsersXmlAsync()
               .GetAwaiter()
               .GetResult();
@@ -67,37 +71,53 @@ namespace WzorzecAdapter
 
     }
 
-    //
-    // tu trzeba dopisać własny adapter implementujący odpowiedni interfejs
-    //
+    public class UsersCsvAdapter : IUserRepository
+    {
+        private CsvReader _adapter = null;
+
+        public UsersCsvAdapter(CsvReader adapter)
+        {
+            _adapter = adapter;
+        }
+
+        public List<List<string>> GetUserNames()
+        {
+            string csvFile = this._adapter
+              .ReadCsvFile("users.csv");
+
+            return csvFile.Split('\n').Select(x => x.Split(',').ToList()).ToList();
+        }
+    }
 
     public class Program
     {
-
         static void Main(string[] args)
         {
-
             UsersApi usersRepository = new UsersApi();
             IUserRepository adapter = new UsersApiAdapter(usersRepository);
 
             Console.WriteLine("Użytkownicy z API:");
             List<List<string>> users = adapter.GetUserNames();
             int i = 1;
-            users.ForEach(user => {
-                //
+            users.ForEach(user =>
+            {
+                Console.WriteLine($"{(i < 10 ? " " : "")}{i}. {user[0]} {user[1]}");
+                i++;
             });
 
             Console.WriteLine();
 
-            // TODO: wyświetl w konsoli wynik działania obu adapterów
+            CsvReader csvReader = new CsvReader();
+            IUserRepository csvAdapter = new UsersCsvAdapter(csvReader);
 
             Console.WriteLine("Użytkownicy z CSV:");
-
-
-
+            List<List<string>> csvUsers = csvAdapter.GetUserNames();
+            int j = 1;
+            csvUsers.ForEach(user =>
+            {
+                Console.WriteLine($"{(j < 10 ? " " : "")}{j}. {user[0]} {user[1]}");
+                j++;
+            });
         }
-
     }
-
-
 }
