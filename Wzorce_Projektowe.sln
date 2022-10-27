@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab_03_Tic tac toe", "Tic t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_04_Dekorator", "Lab_04_Dekorator\Lab_04_Dekorator.csproj", "{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_04_Fasada", "Lab_04_Fasada\Lab_04_Fasada.csproj", "{07C2C4FE-81D1-4589-B077-99985522388C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C2C4FE-81D1-4589-B077-99985522388C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C2C4FE-81D1-4589-B077-99985522388C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C2C4FE-81D1-4589-B077-99985522388C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C2C4FE-81D1-4589-B077-99985522388C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
