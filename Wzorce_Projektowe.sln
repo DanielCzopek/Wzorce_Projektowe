@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab_02_FabrykaAbstrakcyjna"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab_02_Adapter", "Lab_02_Adapter\Lab_02_Adapter.csproj", "{B421202A-EFFD-4649-AC07-87F7A75FCDB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic tac toe", "Tic tac toe\Tic tac toe.csproj", "{D3156E4D-E7F4-420F-BC31-457EE1846486}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab_03_Tic tac toe", "Tic tac toe\Lab_03_Tic tac toe.csproj", "{D3156E4D-E7F4-420F-BC31-457EE1846486}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_04_Dekorator", "Lab_04_Dekorator\Lab_04_Dekorator.csproj", "{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{D3156E4D-E7F4-420F-BC31-457EE1846486}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3156E4D-E7F4-420F-BC31-457EE1846486}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3156E4D-E7F4-420F-BC31-457EE1846486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D5AE3D-FFFD-47D2-9D59-368B1EBF14D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
