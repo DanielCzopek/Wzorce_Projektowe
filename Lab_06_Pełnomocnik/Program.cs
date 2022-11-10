@@ -10,15 +10,21 @@ namespace Pelnomocnik
         private bool HasAdminPrivilages;
 
         // konstruktor? jak jest tworzony obiekt?
+        public User(bool hasAdminPrivilages)
+        {
+            this.HasAdminPrivilages = hasAdminPrivilages;
+        }
 
         public void MakeAdmin()
         {
             // co robi?
+            HasAdminPrivilages = true;
         }
 
         public bool IsAdmin()
         {
             // co zwraca?
+            return HasAdminPrivilages;
         }
 
     }
@@ -36,13 +42,32 @@ namespace Pelnomocnik
 
         public Database()
         {
+            Map = new Dictionary<string, double>();
+            Map.Add("Zyzio MacKwacz", 2500);
+            Map.Add("Scooby Doo", 11.4);
+            Map.Add("Adam Mackiewicz", 15607.95);
+            Map.Add("Rick Morty", 429.18);
             // stworzenie bazy użytkowników
             // i uzupełnienie wartości
         }
 
         // wyświetlenie listy użytkowników
-
+        public void DisplayData()
+        {
+            Console.WriteLine("Użytkownicy:");
+            foreach(var item in Map)
+            {
+                Console.WriteLine(item.Key);
+            }
+        }
         // wyświetlenie ujawniające zarobki
+        public void DisplayRestrictedData()
+        {
+            foreach (var item in Map)
+            {
+                Console.WriteLine(item.Key + " zarabia "+item.Value+" zł miesięcznie");
+            }
+        }
 
     }
 
@@ -54,6 +79,8 @@ namespace Pelnomocnik
 
         public DatabaseGuard(User u)
         {
+            DB = new Database();
+            user = u;
             // stworzenie obiektu DB i przypisanie do pola
             // u? pewnie pole ;)
         }
@@ -65,6 +92,10 @@ namespace Pelnomocnik
 
         public void DisplayRestrictedData()
         {
+            if (user.IsAdmin())
+                DB.DisplayRestrictedData();
+            else
+                Console.WriteLine("Nie masz wystarczających uprawnień");
             // sprawdzenie uprawnień i odpowienie działanie
         }
 
