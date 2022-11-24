@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace WzorceProjektowe
 {
@@ -21,6 +22,8 @@ namespace WzorceProjektowe
         void Attach(IObserver observer);
         //
         //
+        void Detach(IObserver observer);
+        void Notify();
     }
 
     public class NewsAgency : ISubject
@@ -30,8 +33,9 @@ namespace WzorceProjektowe
 
         public void setNewsHeadline(Genre state, string news)
         {
-            //
-            //
+            this.State = state;
+            this.NewsHeadline = news;
+            Notify();
         }
 
         private List<IObserver> Observers = new List<IObserver>();
@@ -40,6 +44,10 @@ namespace WzorceProjektowe
         //
         //
 
+        public void Attach(IObserver observer)
+        {
+            this.Observers.Add(observer);
+        }
         public void Detach(IObserver observer)
         {
             this.Observers.Remove(observer);
@@ -58,6 +66,7 @@ namespace WzorceProjektowe
     {
         public void Update(ISubject subject)
         {
+          
             if ((subject as NewsAgency).State == Genre.Economy)
             {
                 Console.WriteLine($"DailyEconomy publikuje artykuł \"{(subject as NewsAgency).NewsHeadline}\"");
@@ -69,6 +78,26 @@ namespace WzorceProjektowe
     //
     //
     //
+    class NewYorkTimes : IObserver
+    {
+        public void Update(ISubject subject)
+        {
+            if ((subject as NewsAgency).State == Genre.Economy || (subject as NewsAgency).State == Genre.Science || (subject as NewsAgency).State == Genre.Sport || (subject as NewsAgency).State == Genre.Politics)
+            {
+                Console.WriteLine($"NewYorkTimes publikuje artykuł \"{(subject as NewsAgency).NewsHeadline}\"");
+            }
+        }
+    }
+    class NationalGeographic : IObserver
+    {
+        public void Update(ISubject subject)
+        {
+            if ((subject as NewsAgency).State == Genre.Science)
+            {
+                Console.WriteLine($"NationalGeographic publikuje artykuł \"{(subject as NewsAgency).NewsHeadline}\"");
+            }
+        }
+    }
 
     class Program
     {
@@ -80,15 +109,26 @@ namespace WzorceProjektowe
             var newYork = new NewYorkTimes();
             var nationalGeographic = new NationalGeographic();
 
-            //
-            //
-            //
+            newsAgency.Attach(dailyEconomy);
+            newsAgency.Attach(newYork);
+            newsAgency.Attach(nationalGeographic);
 
             newsAgency.setNewsHeadline(Genre.Economy, "USA is going bancrupt!");
-            //
-            //
-            //
+            newsAgency.setNewsHeadline(Genre.Science, "Life on Alpha Centauri");
+            newsAgency.setNewsHeadline(Genre.Sport, "Adam Małysz is the greatest sportsman in the history of mankind");
+            newsAgency.setNewsHeadline(Genre.Economy, "CD Project RED value has grown by 500% in 2020");
+            newsAgency.setNewsHeadline(Genre.Science, "Kirkendall effect causing airplanes' engine deteriorate");
 
+            newsAgency.Detach(dailyEconomy);
+
+            newsAgency.setNewsHeadline(Genre.Economy, "Texas is going bancrupt!");
+
+            newsAgency.Detach(newYork);
+            newsAgency.Detach(nationalGeographic);
+
+            //
+            //
+            //
             //deatach?
 
             //
