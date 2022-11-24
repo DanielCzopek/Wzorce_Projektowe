@@ -14,12 +14,16 @@ namespace Odwiedzajacy
     public class PolishCity : ICity
     {
         /* UZUPEŁNIĆ */
+        public string City;
 
         public PolishCity(string city)
         {
             City = city;
         }
-
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 
 
@@ -27,7 +31,11 @@ namespace Odwiedzajacy
     {
 
         /* UZUPEŁNIĆ */
-
+        public string City;
+        public NetherlandCity(string city)
+        {
+            City = city;
+        }
         public void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
@@ -42,7 +50,15 @@ namespace Odwiedzajacy
         public string City;
 
         /* UZUPEŁNIĆ */
+        public USACity(string city)
+        {
+            City = city;
+        }
 
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 
 
@@ -52,6 +68,9 @@ namespace Odwiedzajacy
         /* UZUPEŁNIĆ */
 
         void Visit(USACity element);
+        void Visit(NetherlandCity element);
+        void Visit(PolishCity element);
+
 
     }
 
@@ -61,11 +80,24 @@ namespace Odwiedzajacy
 
         /* UZUPEŁNIĆ */
         private int USACounter = 0;
+        private int PolishCounter = 0;
+        private int NetherlandCounter = 0;
 
         public void Visit(PolishCity element)
         {
             Console.WriteLine($"Odwiedzam {element.City}");
             PolishCounter++;
+        }
+        public void Visit(NetherlandCity element)
+        {
+            Console.WriteLine($"Odwiedzam {element.City}");
+            NetherlandCounter++;
+        }
+
+        public void Visit(USACity element)
+        {
+            Console.WriteLine($"Odwiedzam {element.City}");
+            USACounter++;
         }
 
         /* UZUPEŁNIĆ */
@@ -100,6 +132,18 @@ namespace Odwiedzajacy
             List<ICity> components = new List<ICity>{
         new PolishCity("Kraków"),
         /* UZUPEŁNIĆ */
+                new PolishCity("Szczecin"),
+                new PolishCity("Rzeszów"),
+                new PolishCity("Gdańsk"),
+                new PolishCity("Katowice"),
+                new NetherlandCity("Maastricht"),
+                new NetherlandCity("Amsterdam"),
+                new USACity("Nowy Jork"),
+                new USACity("Waszyngton"),
+                new USACity("Boston"),
+                new USACity("Princeton"),
+                new USACity("Seattle"),
+                new USACity("Chicago"),
         new USACity("Huston"),
       };
 
