@@ -8,8 +8,18 @@ abstract class Zawodnik
 
     public Zawodnik(KopniecieTyp kopniecieTyp, SkokTyp skokTyp)
     {
+        this.kopniecieTyp = kopniecieTyp;
+        this.skokTyp = skokTyp;
         /* UZUPEŁNIĆ */
+
+
     }
+
+    public virtual void przedstaw()
+    {
+
+    }
+
 
     public void uderzenie()
     {
@@ -29,11 +39,13 @@ abstract class Zawodnik
     public void ustawKopniecieTyp(KopniecieTyp kopniecieTyp)
     {
         /* UZUPEŁNIĆ */
+        this.kopniecieTyp = kopniecieTyp;
     }
 
     public void ustawSkokTyp(SkokTyp skokTyp)
     {
         /* UZUPEŁNIĆ */
+        this.skokTyp = skokTyp;
     }
 
     /* UZUPEŁNIĆ */
@@ -51,9 +63,21 @@ interface KopniecieTyp
 
 class KopniecieLod : KopniecieTyp
 {
+    public void kopniecie()
+    {
+        Console.WriteLine("Kopniecie lodowe");
+    }
 
     /* UZUPEŁNIĆ */
 
+}
+
+class KopniecieOgien : KopniecieTyp
+{
+    public void kopniecie()
+    {
+        Console.WriteLine("Kopniecie z ogniem");
+    }
 }
 
 //
@@ -67,6 +91,21 @@ interface SkokTyp
 
 }
 
+class KrotkiSkok : SkokTyp
+{
+    public void skok()
+    {
+        Console.WriteLine("Krotki skok");
+    }
+}
+class DlugiSkok : SkokTyp
+{
+    public void skok()
+    {
+        Console.WriteLine("Dlugi skok");
+    }
+}
+
 
 //
 //
@@ -75,12 +114,13 @@ interface SkokTyp
 //
 //
 //
-
 
 class SubZero : Zawodnik
 {
 
-    /* UZUPEŁNIĆ - KONSTRUKTOR */
+    public SubZero(KopniecieTyp kopniecieTyp, SkokTyp skokTyp) : base(kopniecieTyp, skokTyp)
+    {
+    }
 
 
     override public void przedstaw()
@@ -91,11 +131,20 @@ class SubZero : Zawodnik
 }
 
 
-//
-//
-//
-//
-//
+class Scorpion : Zawodnik
+{
+
+    public Scorpion(KopniecieTyp kopniecieTyp, SkokTyp skokTyp) : base(kopniecieTyp, skokTyp)
+    {
+    }
+
+
+    override public void przedstaw()
+    {
+        Console.WriteLine("Jestem Scorpion!");
+    }
+
+}
 
 
 
@@ -107,8 +156,8 @@ class MainClass
         Console.WriteLine("-- Mortal Kombat --");
         Console.WriteLine();
 
-        //
-        //
+        SkokTyp krotkiSkok = new KrotkiSkok();
+        SkokTyp dlugiSkok = new DlugiSkok();
         KopniecieTyp kopniecieLod = new KopniecieLod();
         KopniecieTyp kopniecieOgien = new KopniecieOgien();
 
@@ -120,10 +169,14 @@ class MainClass
         subZero.skok();
         subZero.ustawSkokTyp(dlugiSkok);
         subZero.skok();
-
-        //
-        //
-        //
+        Console.WriteLine();
+        Zawodnik scorpion = new Scorpion(kopniecieOgien, dlugiSkok);
+        scorpion.przedstaw();
+        scorpion.uderzenie();
+        scorpion.kopniecie();
+        scorpion.ustawKopniecieTyp(kopniecieLod);
+        scorpion.kopniecie();
+        scorpion.skok();
 
     }
 
