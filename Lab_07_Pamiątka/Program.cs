@@ -42,7 +42,8 @@ namespace Pamiatka
 
         public void Restore(IMemento memento)
         {
-            // przywraca wartość pola
+            Year = memento.GetYear();
+          //przywraca pamiątke
         }
     }
 
