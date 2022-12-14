@@ -5,6 +5,8 @@ namespace LancuchZobowiazan
 {
     public interface IHandler
     {
+        public void Handle(string request);
+        IHandler SetNext(IHandler handler);
         // 2 metody
         //
     }
@@ -15,7 +17,7 @@ namespace LancuchZobowiazan
 
         public IHandler SetNext(IHandler handler)
         {
-            //
+            _nextHandler = handler;
             return handler;
         }
 
@@ -23,7 +25,12 @@ namespace LancuchZobowiazan
         {
 
             // jeśli uchwyt jest nullem to nikt nie je (i to wypisać)
-
+            if (_nextHandler == null)
+                Console.WriteLine($"Nikt nie chce tego zjeść: {request}");
+            else
+            {
+                _nextHandler.Handle(request);
+            }
             // jeśli ma jakąś wartość, to trzeba przekazać kolejnemu zwierzakowi w hierarchii
 
         }
@@ -35,7 +42,7 @@ namespace LancuchZobowiazan
         {
             if (request == "banan")
             {
-                //
+                Console.WriteLine($"Małpa zjada {request}.");
             }
             else
             {
@@ -48,48 +55,42 @@ namespace LancuchZobowiazan
     {
         public override void Handle(string request)
         {
-            if (request == "?????")
+            if (request == "orzech")
             {
                 Console.WriteLine($"Wiewiórka zjada {request}.");
             }
             else
             {
-                //
+                base.Handle(request);
             }
         }
     }
-
-
-
-    public class Client
+    public class DogHandler : AbstractHandler
     {
-        public static void ClientCode(AbstractHandler handler)
+        public override void Handle(string request)
         {
-
-            // foreach po liście produktów (stringi)
-
-            // wewnątrz pytanie "Dto chce {food}?"
-            // i odpalenie właściwej metody na uchwycie
-
+            if (request == "plasterek szynki" || request == "mięso")
+            {
+                Console.WriteLine($"Pies zjada {request}.");
+            }
+            else
+            {
+                base.Handle(request);
+            }
         }
     }
-
-    public class Program
+    public class CatHandler : AbstractHandler
     {
-        static void Main(string[] args)
+        public override void Handle(string request)
         {
-            AbstractHandler monkey = new MonkeyHandler();
-            AbstractHandler squirrel = new SquirrelHandler();
-            // wszystkie zwierzaki?
-
-            monkey.SetNext(dog); // dokończyć łańcuch...
-
-            Console.WriteLine("Łańcuch: Małpa > Pies > Wiewiórka > Kot");
-            Client.ClientCode(monkey);
-            Console.WriteLine();
-
-            Console.WriteLine("Podzbiór łańcucha: Wiewiórka > Kot");
-            Client.ClientCode(squirrel);
+            if (request == "mięso")
+            {
+                Console.WriteLine($"Kot zjada {request}.");
+            }
+            else
+            {
+                base.Handle(request);
+            }
         }
     }
 }
